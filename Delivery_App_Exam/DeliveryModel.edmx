@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DeliveryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarrierSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="HaveLicense" Type="bit" Nullable="false" />
+          <Property Name="LicenseCategory" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OrderSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeliveryAdress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrderDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="DeliveryCost" Type="float" Nullable="false" />
+          <Property Name="CarrierId" Type="int" Nullable="false" />
+          <Property Name="OrderStatus_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatusSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CarrierOrder">
+          <End Role="CarrierSet" Type="Self.CarrierSet" Multiplicity="1" />
+          <End Role="OrderSet" Type="Self.OrderSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarrierSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderSet">
+              <PropertyRef Name="CarrierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderOrderStatus">
+          <End Role="OrderStatusSet" Type="Self.OrderStatusSet" Multiplicity="1" />
+          <End Role="OrderSet" Type="Self.OrderSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderSet">
+              <PropertyRef Name="OrderStatus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="stp_OrderInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="stp.OrderInsert">
+          <Parameter Name="DeliveryAdress" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrderDescription" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="OrderDate" Type="datetime" Mode="In" />
+          <Parameter Name="DeliveryCost" Type="float" Mode="In" />
+          <Parameter Name="CarrierId" Type="int" Mode="In" />
+          <Parameter Name="OrderStatus_Id" Type="int" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="stp_Add_Carrier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="BirthDate" Type="date" Mode="In" />
+          <Parameter Name="HaveLicense" Type="bit" Mode="In" />
+          <Parameter Name="LicenseCategory" Type="nvarchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="stp_OrderByStatusID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StatusID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DeliveryDBModelStoreContainer">
+          <EntitySet Name="CarrierSet" EntityType="Self.CarrierSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderSet" EntityType="Self.OrderSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatusSet" EntityType="Self.OrderStatusSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CarrierOrder" Association="Self.FK_CarrierOrder">
+            <End Role="CarrierSet" EntitySet="CarrierSet" />
+            <End Role="OrderSet" EntitySet="OrderSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderOrderStatus" Association="Self.FK_OrderOrderStatus">
+            <End Role="OrderStatusSet" EntitySet="OrderStatusSet" />
+            <End Role="OrderSet" EntitySet="OrderSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DeliveryDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarrierSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HaveLicense" Type="Boolean" Nullable="false" />
+          <Property Name="LicenseCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderSet" Relationship="Self.FK_CarrierOrder" FromRole="CarrierSet" ToRole="OrderSet" />
+        </EntityType>
+        <EntityType Name="OrderSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeliveryAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeliveryCost" Type="Double" Nullable="false" />
+          <Property Name="CarrierId" Type="Int32" Nullable="false" />
+          <Property Name="OrderStatus_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CarrierSet" Relationship="Self.FK_CarrierOrder" FromRole="OrderSet" ToRole="CarrierSet" />
+          <NavigationProperty Name="OrderStatusSet" Relationship="Self.FK_OrderOrderStatus" FromRole="OrderSet" ToRole="OrderStatusSet" />
+        </EntityType>
+        <EntityType Name="OrderStatusSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OrderSet" Relationship="Self.FK_OrderOrderStatus" FromRole="OrderStatusSet" ToRole="OrderSet" />
+        </EntityType>
+        <Association Name="FK_CarrierOrder">
+          <End Role="CarrierSet" Type="Self.CarrierSet" Multiplicity="1" />
+          <End Role="OrderSet" Type="Self.OrderSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarrierSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderSet">
+              <PropertyRef Name="CarrierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderOrderStatus">
+          <End Role="OrderStatusSet" Type="Self.OrderStatusSet" Multiplicity="1" />
+          <End Role="OrderSet" Type="Self.OrderSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderSet">
+              <PropertyRef Name="OrderStatus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DeliveryDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarrierSet" EntityType="Self.CarrierSet" />
+          <EntitySet Name="OrderSet" EntityType="Self.OrderSet" />
+          <EntitySet Name="OrderStatusSet" EntityType="Self.OrderStatusSet" />
+          <AssociationSet Name="FK_CarrierOrder" Association="Self.FK_CarrierOrder">
+            <End Role="CarrierSet" EntitySet="CarrierSet" />
+            <End Role="OrderSet" EntitySet="OrderSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderOrderStatus" Association="Self.FK_OrderOrderStatus">
+            <End Role="OrderStatusSet" EntitySet="OrderStatusSet" />
+            <End Role="OrderSet" EntitySet="OrderSet" />
+          </AssociationSet>
+          <FunctionImport Name="stp_OrderInsert">
+            <Parameter Name="DeliveryAdress" Mode="In" Type="String" />
+            <Parameter Name="OrderDescription" Mode="In" Type="String" />
+            <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
+            <Parameter Name="DeliveryCost" Mode="In" Type="Double" />
+            <Parameter Name="CarrierId" Mode="In" Type="Int32" />
+            <Parameter Name="OrderStatus_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="stp_Add_Carrier">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="BirthDate" Mode="In" Type="DateTime" />
+            <Parameter Name="HaveLicense" Mode="In" Type="Boolean" />
+            <Parameter Name="LicenseCategory" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="stp_OrderByStatusID" ReturnType="Collection(DeliveryDBModel.stp_OrderByStatusID_Result)">
+            <Parameter Name="StatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="stp_OrderByStatusID_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="DeliveryAdress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="OrderDescription" Nullable="false" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="DeliveryCost" Nullable="false" />
+          <Property Type="Int32" Name="CarrierId" Nullable="false" />
+          <Property Type="Int32" Name="OrderStatus_Id" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DeliveryDBModelStoreContainer" CdmEntityContainer="DeliveryDBEntities">
+          <EntitySetMapping Name="CarrierSet">
+            <EntityTypeMapping TypeName="DeliveryDBModel.CarrierSet">
+              <MappingFragment StoreEntitySet="CarrierSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="HaveLicense" ColumnName="HaveLicense" />
+                <ScalarProperty Name="LicenseCategory" ColumnName="LicenseCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderSet">
+            <EntityTypeMapping TypeName="DeliveryDBModel.OrderSet">
+              <MappingFragment StoreEntitySet="OrderSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeliveryAdress" ColumnName="DeliveryAdress" />
+                <ScalarProperty Name="OrderDescription" ColumnName="OrderDescription" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryCost" ColumnName="DeliveryCost" />
+                <ScalarProperty Name="CarrierId" ColumnName="CarrierId" />
+                <ScalarProperty Name="OrderStatus_Id" ColumnName="OrderStatus_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatusSet">
+            <EntityTypeMapping TypeName="DeliveryDBModel.OrderStatusSet">
+              <MappingFragment StoreEntitySet="OrderStatusSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="stp_OrderInsert" FunctionName="DeliveryDBModel.Store.stp_OrderInsert" />
+          <FunctionImportMapping FunctionImportName="stp_Add_Carrier" FunctionName="DeliveryDBModel.Store.stp_Add_Carrier" />
+          <FunctionImportMapping FunctionImportName="stp_OrderByStatusID" FunctionName="DeliveryDBModel.Store.stp_OrderByStatusID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DeliveryDBModel.stp_OrderByStatusID_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeliveryAdress" ColumnName="DeliveryAdress" />
+                <ScalarProperty Name="OrderDescription" ColumnName="OrderDescription" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryCost" ColumnName="DeliveryCost" />
+                <ScalarProperty Name="CarrierId" ColumnName="CarrierId" />
+                <ScalarProperty Name="OrderStatus_Id" ColumnName="OrderStatus_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
