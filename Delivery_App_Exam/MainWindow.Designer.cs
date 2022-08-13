@@ -37,12 +37,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.haveLicenseDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.licenseCategoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.carrierSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.carrierSetTableAdapter = new Delivery_App_Exam.DeliveryDBDataSetTableAdapters.CarrierSetTableAdapter();
             this.button4 = new System.Windows.Forms.Button();
@@ -60,6 +54,12 @@
             this.deliveryCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.carrierIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderStatusIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.haveLicenseDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.licenseCategoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryDBDataSet)).BeginInit();
@@ -156,48 +156,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(546, 232);
             this.dataGridView2.TabIndex = 5;
             this.dataGridView2.Visible = false;
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // birthDateDataGridViewTextBoxColumn
-            // 
-            this.birthDateDataGridViewTextBoxColumn.DataPropertyName = "BirthDate";
-            this.birthDateDataGridViewTextBoxColumn.HeaderText = "BirthDate";
-            this.birthDateDataGridViewTextBoxColumn.Name = "birthDateDataGridViewTextBoxColumn";
-            this.birthDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // haveLicenseDataGridViewCheckBoxColumn
-            // 
-            this.haveLicenseDataGridViewCheckBoxColumn.DataPropertyName = "HaveLicense";
-            this.haveLicenseDataGridViewCheckBoxColumn.HeaderText = "HaveLicense";
-            this.haveLicenseDataGridViewCheckBoxColumn.Name = "haveLicenseDataGridViewCheckBoxColumn";
-            this.haveLicenseDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // licenseCategoryDataGridViewTextBoxColumn
-            // 
-            this.licenseCategoryDataGridViewTextBoxColumn.DataPropertyName = "LicenseCategory";
-            this.licenseCategoryDataGridViewTextBoxColumn.HeaderText = "LicenseCategory";
-            this.licenseCategoryDataGridViewTextBoxColumn.Name = "licenseCategoryDataGridViewTextBoxColumn";
-            this.licenseCategoryDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // carrierSetBindingSource
             // 
@@ -341,6 +299,48 @@
             this.orderStatusIdDataGridViewTextBoxColumn.ValueMember = "Id";
             this.orderStatusIdDataGridViewTextBoxColumn.Width = 125;
             // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Имя";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Фамилия";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // birthDateDataGridViewTextBoxColumn
+            // 
+            this.birthDateDataGridViewTextBoxColumn.DataPropertyName = "BirthDate";
+            this.birthDateDataGridViewTextBoxColumn.HeaderText = "Дата рождения";
+            this.birthDateDataGridViewTextBoxColumn.Name = "birthDateDataGridViewTextBoxColumn";
+            this.birthDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // haveLicenseDataGridViewCheckBoxColumn
+            // 
+            this.haveLicenseDataGridViewCheckBoxColumn.DataPropertyName = "HaveLicense";
+            this.haveLicenseDataGridViewCheckBoxColumn.HeaderText = "Вод.права";
+            this.haveLicenseDataGridViewCheckBoxColumn.Name = "haveLicenseDataGridViewCheckBoxColumn";
+            this.haveLicenseDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // licenseCategoryDataGridViewTextBoxColumn
+            // 
+            this.licenseCategoryDataGridViewTextBoxColumn.DataPropertyName = "LicenseCategory";
+            this.licenseCategoryDataGridViewTextBoxColumn.HeaderText = "Категория прав";
+            this.licenseCategoryDataGridViewTextBoxColumn.Name = "licenseCategoryDataGridViewTextBoxColumn";
+            this.licenseCategoryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,12 +383,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource carrierSetBindingSource;
         private DeliveryDBDataSetTableAdapters.CarrierSetTableAdapter carrierSetTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn birthDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn haveLicenseDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn licenseCategoryDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -404,6 +398,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn deliveryCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn carrierIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn orderStatusIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birthDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn haveLicenseDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn licenseCategoryDataGridViewTextBoxColumn;
     }
 }
 
