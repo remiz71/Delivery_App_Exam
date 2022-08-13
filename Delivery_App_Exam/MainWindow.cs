@@ -49,7 +49,11 @@ namespace Delivery_App_Exam
         private void button2_Click(object sender, EventArgs e)
         {
             AddWindow add = new AddWindow();
-            add.ShowDialog();
+            if(add.ShowDialog() == DialogResult.OK)
+            {
+            this.carrierSetTableAdapter.Fill(this.deliveryDBDataSet.CarrierSet);
+                
+            }
             
         }
 
